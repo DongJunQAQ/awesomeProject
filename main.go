@@ -23,8 +23,6 @@ func main() {
 	if err != nil {
 		panic("数据库迁移失败")
 	}
-	fmt.Printf("已成功创建%d条记录\n", database.CreateOneRecord(db))
-	fmt.Printf("已成功创建%d条记录\n", database.CreateManyRecord(db))
-	fmt.Printf("已成功创建%d条记录\n", database.SelectedFields(db))
-	//fmt.Printf("已成功创建%d条记录\n", database.IgnoreFields(db))
+	//database.CreateOneRecord(db)
+	fmt.Println(database.QueryManyWithField(db))
 }
