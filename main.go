@@ -24,5 +24,5 @@ func main() {
 		panic("数据库迁移失败")
 	}
 	//database.CreateOneRecord(db)
-	fmt.Println(database.QueryManyWithField(db))
+	fmt.Println(database.OrQuery(db))
 }
