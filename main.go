@@ -23,6 +23,5 @@ func main() {
 	if err != nil {
 		panic("数据库迁移失败")
 	}
-	//database.CreateOneRecord(db)
-	fmt.Println(database.SelectFieldsQuery(db))
+	fmt.Println(database.DeleteRecord(db))
 }
