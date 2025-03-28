@@ -23,5 +23,7 @@ func main() {
 	if err != nil {
 		panic("数据库迁移失败")
 	}
-	fmt.Println(database.DeleteRecord(db))
+	//database.CreateManyRecord(db)
+	//fmt.Println(database.DeleteSingleWithPrimaryKey(db))
+	fmt.Println(database.RealDelete(db))
 }
