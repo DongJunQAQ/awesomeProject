@@ -1,0 +1,6 @@
+db:
+  host: 192.168.246.137
+  port: 3306
+  user: root
+  passwd: 123456
+  database: goweb

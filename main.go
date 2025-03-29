@@ -1,6 +1,7 @@
 package main
 
 import (
+	"awesomeProject/conf"
 	"awesomeProject/database"
 	"awesomeProject/model"
 	"fmt"
@@ -8,8 +9,10 @@ import (
 	"gorm.io/gorm"
 )
 
+var myConf = conf.ReadConfigFile("config")
+
 func connectDB() *gorm.DB {
-	dsn := "root:123456@tcp(192.168.246.137:3306)/goweb?charset=utf8mb4&parseTime=True&loc=Local"
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", myConf.GetString("db.user"), myConf.GetString("db.passwd"), myConf.GetString("db.host"), myConf.GetString("db.port"), myConf.GetString("db.database"))
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic("无法连接到数据库")
@@ -23,7 +26,5 @@ func main() {
 	if err != nil {
 		panic("数据库迁移失败")
 	}
-	//database.CreateManyRecord(db)
-	//fmt.Println(database.DeleteSingleWithPrimaryKey(db))
-	fmt.Println(database.RealDelete(db))
+	fmt.Println(database.SelectFieldsQuery(db))
 }
