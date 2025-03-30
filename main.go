@@ -2,8 +2,6 @@ package main
 
 import (
 	"awesomeProject/conf"
-	"awesomeProject/database"
-	"awesomeProject/model"
 	"fmt"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -21,10 +19,11 @@ func connectDB() *gorm.DB {
 }
 
 func main() {
-	db := connectDB()
-	err := db.AutoMigrate(&model.User{}) //自动迁移
-	if err != nil {
-		panic("数据库迁移失败")
-	}
-	fmt.Println(database.SelectFieldsQuery(db))
+	//db := connectDB()
+	//err := db.AutoMigrate(&model.User{}) //自动迁移
+	//if err != nil {
+	//	panic("数据库迁移失败")
+	//}
+	//fmt.Println(database.SelectFieldsQuery(db))
+	conf.InitDevLogger()
 }
