@@ -25,5 +25,9 @@ func main() {
 	//	panic("数据库迁移失败")
 	//}
 	//fmt.Println(database.SelectFieldsQuery(db))
-	conf.InitDevLogger()
+	myProdLogger := conf.GetProdLogger()
+	myProdLogger.Debug("prod this is Debug")
+	myProdLogger.Info("prod this is Info")
+	myProdLogger.Warn("prod this is Warn")
+	myProdLogger.Error("prod this is Error")
 }
