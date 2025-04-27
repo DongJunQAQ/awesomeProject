@@ -27,7 +27,7 @@ func main() {
 	//fmt.Println(database.CreateManyRecord(db))
 
 	logger := conf.GetGlobalLogger()
-	logger.Debug("qwe")
+	logger.Debugf("报错级别:%s", "Debug")
 	logger.Info("qwe")
 	logger.Warn("qwe")
 	logger.Error("qwe")

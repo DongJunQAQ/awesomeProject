@@ -8,8 +8,8 @@ import (
 )
 
 var (
-	GlobalLogger *zap.Logger //使用单例模式实现日志实例
-	loggerOnce   sync.Once
+	sugarGlobalLogger *zap.SugaredLogger //使用单例模式实现日志实例
+	loggerOnce        sync.Once
 )
 
 func convertLevelFormat(confLevel string) zapcore.Level { //将配置文件中的日志级别转换为zapcore.Level
@@ -27,9 +27,9 @@ func convertLevelFormat(confLevel string) zapcore.Level { //将配置文件中�
 	}
 }
 
-// 实现日志格式化输出
-func GetGlobalLogger() *zap.Logger {
+func GetGlobalLogger() *zap.SugaredLogger {
 	loggerOnce.Do(func() {
+		var GlobalLogger *zap.Logger
 		cfg := zap.NewProductionConfig()
 		zapLogLevel := convertLevelFormat(GetGlobalConf().GetString("log.level")) //获取zap格式的日志级别
 		cfg.EncoderConfig.EncodeTime = zapcore.TimeEncoderOfLayout("2006-01-02 15:04:05")
@@ -38,6 +38,7 @@ func GetGlobalLogger() *zap.Logger {
 		fileCore := zapcore.NewCore(zapcore.NewJSONEncoder(cfg.EncoderConfig), file, zapLogLevel) //输出日志文件
 		core := zapcore.NewTee(consoleCore, fileCore)
 		GlobalLogger = zap.New(core, zap.AddCaller())
+		sugarGlobalLogger = GlobalLogger.Sugar()
 	})
-	return GlobalLogger
+	return sugarGlobalLogger
 }
