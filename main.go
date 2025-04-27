@@ -7,10 +7,8 @@ import (
 	"gorm.io/gorm"
 )
 
-var myConf = conf.ReadConfigFile("config")
-
 func connectDB() *gorm.DB {
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", myConf.GetString("db.user"), myConf.GetString("db.passwd"), myConf.GetString("db.host"), myConf.GetString("db.port"), myConf.GetString("db.database"))
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", conf.MyConf.GetString("db.user"), conf.MyConf.GetString("db.passwd"), conf.MyConf.GetString("db.host"), conf.MyConf.GetString("db.port"), conf.MyConf.GetString("db.database"))
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic("无法连接到数据库")
@@ -24,10 +22,10 @@ func main() {
 	//if err != nil {
 	//	panic("数据库迁移失败")
 	//}
-	//fmt.Println(database.SelectFieldsQuery(db))
-	myProdLogger := conf.GetProdLogger()
-	myProdLogger.Debug("prod this is Debug")
-	myProdLogger.Info("prod this is Info")
-	myProdLogger.Warn("prod this is Warn")
-	myProdLogger.Error("prod this is Error")
+	//fmt.Println(database.CreateManyRecord(db))
+	logger := conf.GetProdLogger()
+	logger.Debug("qwe")
+	logger.Info("qwe")
+	logger.Warn("qwe")
+	logger.Error("qwe")
 }

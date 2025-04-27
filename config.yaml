@@ -4,3 +4,5 @@ db:
   user: root
   passwd: 123456
   database: goweb
+log:
+  level: "debug" #日志显示的最低级别

@@ -1,18 +1,29 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sync"
+	"sync/atomic"
+)
 
-func PrintValue(v interface{}) { //接收一个空接口（任意类型）类型的参数
-	fmt.Printf("值为:%v，类型为:%T\n", v, v)
+var (
+	counter int64 //计数器
+	wg      sync.WaitGroup
+)
+
+func foo() int64 {
+	atomic.AddInt64(&counter, 1) // 原子地增加计数器的值，每次加1
+	return counter
 }
 
 func main() {
-	// 定义不同类型的变量
-	num := 10
-	str := "hello"
-	arr := [3]int{1, 2, 3}
-	// 调用PrintValue函数并传入不同类型的变量
-	PrintValue(num)
-	PrintValue(str)
-	PrintValue(arr)
+	wg.Add(100)
+	for i := 0; i < 100; i++ { // 启动100个goroutine来增加计数器的值
+		go func() {
+			defer wg.Done()
+			foo()
+		}()
+	}
+	wg.Wait()
+	fmt.Println("计数器的值:", atomic.LoadInt64(&counter)) // 原子地读取计数器的值
 }

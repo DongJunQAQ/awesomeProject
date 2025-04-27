@@ -6,6 +6,7 @@ import (
 	"github.com/spf13/viper"
 )
 
+// 配置文件实现单例
 func ReadConfigFile(filename string) *viper.Viper {
 	config := viper.New()
 	//从项目的根目录下读取名为config，格式为yaml的文件
@@ -23,3 +24,5 @@ func ReadConfigFile(filename string) *viper.Viper {
 	}
 	return config
 }
+
+var MyConf = ReadConfigFile("config")
