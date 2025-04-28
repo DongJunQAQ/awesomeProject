@@ -4,6 +4,7 @@ import (
 	"awesomeProject/conf"
 	"awesomeProject/database"
 	"awesomeProject/model"
+	"fmt"
 )
 
 func main() {
@@ -12,5 +13,6 @@ func main() {
 	if err != nil {
 		conf.GetGlobalLogger().Panicf("数据库迁移失败")
 	}
-	//fmt.Println(database.SelectFieldsQuery(db))
+	fmt.Println(database.SelectFieldsQuery(db))
+	fmt.Println(database.SelectFieldsQuery(db))
 }
