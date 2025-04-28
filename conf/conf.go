@@ -23,9 +23,9 @@ func ReadConfigFile(filename string) *viper.Viper {
 		if err != nil {
 			var configFileNotFoundError viper.ConfigFileNotFoundError
 			if errors.As(err, &configFileNotFoundError) {
-				panic(fmt.Errorf("配置文件不存在：%w", err))
+				panic(fmt.Errorf("配置文件%s不存在:%w", filename, err))
 			} else {
-				panic(fmt.Errorf("读取配置文件错误：%w", err))
+				panic(fmt.Errorf("读取配置文件%s错误：%w", filename, err))
 			}
 		}
 	})
