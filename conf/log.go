@@ -27,7 +27,7 @@ func convertLevelFormat(confLevel string) zapcore.Level { //将配置文件中�
 	}
 }
 
-func GetGlobalLogger() *zap.SugaredLogger {
+func GetGlobalLogger() *zap.SugaredLogger { //获取全局单例日志实例
 	loggerOnce.Do(func() {
 		var GlobalLogger *zap.Logger
 		cfg := zap.NewProductionConfig()

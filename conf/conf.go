@@ -31,6 +31,6 @@ func ReadConfigFile(filename string) *viper.Viper {
 	})
 	return GlobalConf
 }
-func GetGlobalConf() *viper.Viper {
+func GetGlobalConf() *viper.Viper { //获取全局单例配置实例
 	return ReadConfigFile("config") //指定配置文件的文件名
 }

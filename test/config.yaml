@@ -1,0 +1,8 @@
+db:
+  host: 192.168.246.137
+  port: 3306
+  user: root
+  passwd: 123456
+  database: goweb
+log:
+  level: "debug" #日志显示的最低级别
