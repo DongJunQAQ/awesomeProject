@@ -16,9 +16,9 @@ func main() {
 		conf.GetGlobalLogger().Panicf("数据库迁移失败")
 	}
 	//初始化web
-	router := gin.Default()       //创建一个默认的Gin路由器实例
+	router := gin.Default()       //创建默认的Gin路由实例
 	router.GET("/ping", web.Ping) //这里web.Ping与web.Ping()的区别
-	err = router.Run()            //默认监听8080端口
+	err = router.Run()            //启动web服务且默认监听8080端口
 	if err != nil {
 		conf.GetGlobalLogger().Panicf("web服务启动失败:%s", err)
 	}
