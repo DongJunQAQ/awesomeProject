@@ -6,6 +6,8 @@ import (
 	"testing"
 )
 
+var db = database.GetGlobalDB()
+
 func TestGetGlobalDB(t *testing.T) {
 	db1 := database.GetGlobalDB()
 	fmt.Printf("%p\n", db1)
@@ -17,4 +19,8 @@ func TestGetGlobalDB(t *testing.T) {
 	} else {
 		fmt.Println("是单例模式")
 	}
+}
+
+func TestSelectFieldsQueryAllUser(t *testing.T) {
+	fmt.Println(database.SelectFieldsQueryAllUser(db))
 }

@@ -4,16 +4,20 @@ import (
 	"awesomeProject/model"
 	"fmt"
 	"gorm.io/gorm"
+	"time"
 )
 
-type ApiUser struct { //创建指定要返回字段的结构体
-	Name string
-	Age  uint8
+type ApiUser struct {
+	Id       uint
+	Name     string
+	Email    string
+	Age      uint8
+	BirthDay time.Time
 }
 
-func SelectFieldsQuery(db *gorm.DB) []ApiUser { //选择指定字段检索返回
+func SelectFieldsQueryAllUser(db *gorm.DB) []ApiUser { //选择指定字段检索返回
 	var users []ApiUser
-	result := db.Model(&model.User{}).Select("name", "age").Find(&users) //SELECT name, age FROM users;
+	result := db.Model(&model.User{}).Select("id", "name", "email", "age", "birthday").Find(&users)
 	if result.RowsAffected == 0 {
 		fmt.Println("查询失败:暂无记录")
 	}
