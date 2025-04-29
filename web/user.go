@@ -19,5 +19,5 @@ func Ping(c *gin.Context) {
 func QueryAllUsers(c *gin.Context) { //指定字段查询所有用户
 	users := database.SelectFieldsQueryAllUser(db)
 	c.JSON(http.StatusOK, users)
-	logger.Debugf("URL:%s Code:%d", c.Request.URL.String(), c.Writer.Status())
+	logger.Debugf("Method:%s URL:%s Code:%d", c.Request.Method, c.Request.URL.String(), c.Writer.Status())
 }
