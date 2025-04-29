@@ -22,7 +22,7 @@ func GetGlobalDB() *gorm.DB { //获取全局数据库单例实例
 		if err != nil {
 			conf.GetGlobalLogger().Panicf("无法连接至数据库:%s:%s", myConf.GetString("db.host"), myConf.GetString("db.port"))
 		} else {
-			conf.GetGlobalLogger().Debugf("数据库连接成功")
+			conf.GetGlobalLogger().Infof("数据库连接成功")
 		}
 	})
 	return globalDB

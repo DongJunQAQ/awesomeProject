@@ -9,14 +9,19 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-var myConf = conf.GetGlobalConf()
+var (
+	myConf   = conf.GetGlobalConf()
+	myLogger = conf.GetGlobalLogger()
+)
 
 func main() {
 	//初始化数据库
 	db := database.GetGlobalDB()
 	err := db.AutoMigrate(&model.User{}) //自动迁移数据库
 	if err != nil {
-		conf.GetGlobalLogger().Panicf("数据库迁移失败")
+		myLogger.Panicln("数据库迁移失败:", err)
+	} else {
+		myLogger.Infoln("数据库迁移成功")
 	}
 	//初始化web
 	router := gin.Default()       //创建默认的Gin路由实例
