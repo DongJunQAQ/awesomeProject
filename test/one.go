@@ -1,13 +1,21 @@
 package main
 
-import "fmt"
+import (
+	"github.com/gin-gonic/gin"
+	"net/http"
+)
 
-func init() {
-	fmt.Println("init1")
+func ping(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{
+		"message": "pong",
+	})
 }
-func init() {
-	fmt.Println("init2")
-}
+
 func main() {
-	fmt.Println("hello world")
+	router := gin.Default()
+	router.GET("/ping", ping) //注意这里的ping是一个函数对象，不是调用ping函数
+	err := router.Run()
+	if err != nil {
+		return
+	}
 }

@@ -17,7 +17,7 @@ func main() {
 	}
 	//初始化web
 	router := gin.Default()       //创建默认的Gin路由实例
-	router.GET("/ping", web.Ping) //这里web.Ping与web.Ping()的区别
+	router.GET("/ping", web.Ping) //web.Ping代表的是一个函数对象
 	err = router.Run()            //启动web服务且默认监听8080端口
 	if err != nil {
 		conf.GetGlobalLogger().Panicf("web服务启动失败:%s", err)
