@@ -21,6 +21,10 @@ func TestGetGlobalDB(t *testing.T) {
 	}
 }
 
+func TestCreateOneRecord(t *testing.T) {
+	fmt.Println(database.CreateOneRecord(db))
+}
+
 func TestSelectFieldsQueryAllUser(t *testing.T) {
 	fmt.Println(database.SelectFieldsQueryAllUser(db))
 }

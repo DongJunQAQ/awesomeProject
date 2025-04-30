@@ -2,7 +2,6 @@ package database
 
 import (
 	"awesomeProject/model"
-	"fmt"
 	"gorm.io/gorm"
 	"time"
 )
@@ -17,9 +16,7 @@ type apiUser struct {
 
 func SelectFieldsQueryAllUser(db *gorm.DB) []apiUser { //选择指定字段检索返回
 	var users []apiUser
-	result := db.Model(&model.User{}).Select("id", "name", "email", "age", "birthday").Find(&users)
-	if result.RowsAffected == 0 {
-		fmt.Println("查询失败:暂无记录")
-	}
+	db.Model(&model.User{}).Select("id", "name", "email", "age", "birthday").Find(&users)
+	//这里的birthday字段查询结果为nil，即使该字段在数据库中已有记录
 	return users
 }
