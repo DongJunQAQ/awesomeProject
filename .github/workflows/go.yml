@@ -6,8 +6,6 @@ on:
   pull_request:
     types: [ opened,synchronize ]  # 只有在创建PR、源分支代码更新
     branches: [ 'master' ]  # 且PR的目标分支是master时才会触发该工作流
-  release:
-    types: [published]
 
 jobs:
   build_and_push_image:  # job id
@@ -43,4 +41,4 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
         name: registry.cn-hangzhou.aliyuncs.com/dongjun11/awesome  # 镜像的名称
         dockerfile: Dockerfile
-        tags: "test,${{ steps.pre-step.outputs.release-version }}"
+        tag_names: true
