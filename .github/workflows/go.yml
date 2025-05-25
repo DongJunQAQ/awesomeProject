@@ -12,16 +12,22 @@ jobs:
     runs-on: ubuntu-latest  # 运行时所需要的虚拟机环境
     steps:
     
-    #- name: Set up Go 1.23
-    #  uses: actions/setup-go@v4  # 引用别人已经创建好的actions脚本，用来设置go的运行环境
-    #  with:  # 指定actions脚本所需的输入参数，每个都是键值对格式
-    #    go-version: '1.23'
+    - name: Set up Go 1.23
+      uses: actions/setup-go@v4  # 引用别人已经创建好的actions脚本，用来设置go的运行环境
+      with:  # 指定actions脚本所需的输入参数，每个都是键值对格式
+        go-version: '1.23'
         
     - name: clone code
       uses: actions/checkout@v4  # 拉取/克隆代码
     
-    #- name: Build
-    #  run: go build -o myapp .
+    - name: Build
+      run: go build -o awesome .
+
+    - name: Collecting Binaries
+      uses: actions/upload-artifact@v4.6.2
+      with:
+        name: output
+        path: awesome  # 上传至制品仓库的文件路径
       
     - name: Publish to Docker Registry
       uses: elgohr/Publish-Docker-Github-Action@v5
