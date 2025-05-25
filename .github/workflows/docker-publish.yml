@@ -1,8 +1,6 @@
 name: Publish to Registry
 
-on:    
-  release:
-    types: [ created ]
+on: [release]
       
 jobs:
   update:
