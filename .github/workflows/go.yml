@@ -2,9 +2,9 @@ name: myGoCI
 
 on:
   push:
-    branches: [ '*' ]  # 所有分支发生push事件时都会触发该工作流
+    branches: ['*']  # 所有分支发生push事件时都会触发该工作流
   pull_request:
-    types: [ opened,synchronize,closed ]  # 只有在创建PR、源分支代码更新、合并PR
+    types: [ opened,synchronize ]  # 只有在创建PR、源分支代码更新
     branches: [ 'master' ]  # 且PR的目标分支是master时才会触发该工作流
     
 
