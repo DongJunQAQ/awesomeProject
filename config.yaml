@@ -1,8 +1,8 @@
 db:
-  host: 192.168.246.137
+  host: 122.9.188.103
   port: 3306
   user: root
-  passwd: 123456
+  passwd: Zdj7900802
   database: goweb
 web:
   host: 0.0.0.0
