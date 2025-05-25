@@ -19,7 +19,7 @@ func LoggingMiddleware(c *gin.Context) { // 日志记录中间件，创建一个
 
 func Ping(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
-		"message": "pong!!!!!!!!!djdj",
+		"message": "pong!!!!!!!!!djdj!!!!",
 	})
 }
 
