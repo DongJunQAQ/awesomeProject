@@ -41,6 +41,6 @@ jobs:
         registry: registry.cn-hangzhou.aliyuncs.com  # 登陆地址
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-        name: registry.cn-hangzhou.aliyuncs.com/dongjun11/awesome:test  # 默认的镜像名称
+        name: registry.cn-hangzhou.aliyuncs.com/dongjun11/awesome  # 镜像的名称
         dockerfile: Dockerfile
-        tags: "latest,${{ steps.pre-step.outputs.release-version }}"
+        tags: "test,${{ steps.pre-step.outputs.release-version }}"
