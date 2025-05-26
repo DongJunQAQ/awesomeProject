@@ -2,11 +2,11 @@ name: docker-publish
 
 on:
   push:
-    branches:
-      - "**"
-    tags:
-      - "v*.*.*"
+    branches: [ "**" ]
+    tags: [ "v*.*.*" ]
   pull_request:
+    types: [ opened,synchronize ]
+    branches: [ "master" ]
 
 jobs:
   docker:
@@ -19,7 +19,6 @@ jobs:
           images: registry.cn-hangzhou.aliyuncs.com/dongjun11/awesome
           tags: |
             type=ref,event=branch
-            type=ref,event=pr
             type=semver,pattern={{version}}
             type=sha
 
